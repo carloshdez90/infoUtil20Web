@@ -3,37 +3,38 @@
 ${demo.css}
 		</style>
 		<script type="text/javascript">
-		console.log("<?php echo $calisalud.$caliedu;?>");
+		
+		
 $(function () {
+	
+
+	
         $('#container').highcharts({
             chart: {
                 type: 'column'
             },
             title: {
-                text: 'Promedio Mesual'
+                text:  '<?php echo $titleprom;?>'
             },
             subtitle: {
-                text: 'Calificaciones'
+                text:  '<?php echo $subtitleprom;?>'
             },
             xAxis: {
-                categories: [
-                    'Salud',
-                    'Educación',
-                    'Finanzas',
-                    'Directorios',
-                    'Deportes'
-                ]
+                categories: 
+               <?php 
+				print_r(json_encode($categoria));
+             ;?>
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Rainfall (mm)'
+                    text:  '<?php echo $titleprom2;?>'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -46,7 +47,9 @@ $(function () {
             },
             series: [{
                 name: 'Calificacion Promedio',
-                data: [parseFloat("<?php echo $calisalud;?>"),parseFloat("<?php echo $caliedu;?>"),parseFloat("<?php echo $califina;?>"),parseFloat("<?php echo $calidirec;?>"),parseFloat("<?php echo $calicult;?>")]
+                data:  <?php 
+				print_r(json_encode($notas));
+             ;?>
    
         	
     
@@ -59,5 +62,9 @@ $(function () {
 
 
 	
-<div id="container"  class="col-md-4"></div>
+<div id="container"  class="col-md-4">
+
+
+</div>
+
 
